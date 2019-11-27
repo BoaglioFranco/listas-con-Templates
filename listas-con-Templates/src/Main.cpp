@@ -7,8 +7,7 @@ int main() {
 	Lista<int> A;
 	A.Agregar_principio(3);
 	A.Agregar_Final(69420);
-
-	std::cout << A.extraerUltimo();
+	A.Agregar_Final(2);
 
 	return 0;
 }

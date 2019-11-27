@@ -7,11 +7,11 @@ class Lista
 public:
 	Lista<T>();
 
-	void Agregar_principio(T dato);
+	void Agregar_principio(T dato); //Nunca lowerCamelCase, no? 
 	void Agregar_Final(T nuevo);
 	T extraerUltimo();
-	void Mostrar_Lista();
-
+	//void Mostrar_Lista(); Testing purposes only.
+	bool listaVacia();
 private:
 	Node<T>* inicio;
 	Node<T>* GetUltimo();
@@ -36,9 +36,28 @@ inline void Lista<T>::Agregar_principio(T dato)
 
 template<typename T>
 inline T Lista<T>::extraerUltimo(){
-	Node<T> * pUltimo = GetUltimo();
-	T data = pUltimo->Get_dato();
-	delete pUltimo;
+	Node<T>* pAnte = nullptr;
+	Node<T>* pDesp = inicio;
+	T data;
+	if (pDesp) {
+		if (!pDesp->Get_siguiente()) {
+			data = pDesp->Get_dato();
+			inicio = nullptr;
+			delete pDesp;
+		}
+
+		else {
+			while (pDesp->Get_siguiente()) {
+				pAnte = pDesp;
+				pDesp = pDesp->Get_siguiente();
+			}
+			data = pDesp->Get_dato();
+			pAnte->Set_siguiente(nullptr);
+			delete pDesp;
+
+		}
+	}
+	
 
 	return data;
 }
@@ -67,7 +86,7 @@ inline Node<T>* Lista<T>::GetUltimo()
 
 }
 
-template<typename T>
+/*template<typename T>
 inline void Lista<T>::Mostrar_Lista()
 {
 	Node<T>* pDesp = inicio;
@@ -76,4 +95,9 @@ inline void Lista<T>::Mostrar_Lista()
 		pDesp->MostrarNodo;
 	}
 
+}*/
+
+template<typename T>
+inline bool Lista<T>::listaVacia() {
+	return inicio == nullptr;
 }
