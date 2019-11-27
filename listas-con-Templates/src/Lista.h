@@ -15,7 +15,6 @@ public:
 private:
 	Node<T>* inicio;
 	Node<T>* GetUltimo();
-	Node<T>* Get_Inicio();
 };
 
 template<typename T>
