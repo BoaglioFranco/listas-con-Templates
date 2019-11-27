@@ -9,7 +9,6 @@ int main() {
 	A.Agregar_Final(69420);
 
 	std::cout << A.extraerUltimo();
-	
 
 	return 0;
 }
